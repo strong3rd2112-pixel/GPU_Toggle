@@ -11,11 +11,11 @@ if (-not $isAdmin) {
 
 # Check if the external GPU is connected
 Write-Output "Checking for external GPU..."
-if (Get-PnpDevice | Where-Object { $_.FriendlyName -like "*NVIDIA GeForce RTX 4060 Ti*" }) {
-    Write-Output "External GPU (NVIDIA GeForce RTX 4060 Ti) detected."
-    $internalGPU = Get-PnpDevice | Where-Object { $_.FriendlyName -like "*Intel(R) UHD Graphics 620*" }
+if (Get-PnpDevice | Where-Object { $_.FriendlyName -like "*NVIDIA GeForce GTX 1060 3GB*" }) {
+    Write-Output "External GPU (NVIDIA GeForce GTX 1060 3GB) detected."
+    $internalGPU = Get-PnpDevice | Where-Object { $_.FriendlyName -like "*Intel(R) HD Graphics 620*" }
     if ($internalGPU) {
-        Write-Output "Internal GPU (Intel(R) UHD Graphics 620) detected."
+        Write-Output "Internal GPU (Intel(R) HD Graphics 620) detected."
         if ($internalGPU.Status -eq "OK") {
             Write-Output "Internal GPU is currently enabled."
             $confirmDisable = Read-Host "Do you want to disable the internal GPU? (Y/N)"
@@ -38,11 +38,11 @@ if (Get-PnpDevice | Where-Object { $_.FriendlyName -like "*NVIDIA GeForce RTX 40
             }
         }
     } else {
-        Write-Output "Internal GPU (Intel(R) UHD Graphics 620) not detected."
+        Write-Output "Internal GPU (Intel(R) HD Graphics 620) not detected."
     }
 } else {
-    Write-Output "External GPU (NVIDIA GeForce RTX 4060 Ti) not detected."
-    $internalGPU = Get-PnpDevice | Where-Object { $_.FriendlyName -like "*Intel(R) UHD Graphics 620*" }
+    Write-Output "External GPU (NVIDIA GeForce GTX 1060 3GB) not detected."
+    $internalGPU = Get-PnpDevice | Where-Object { $_.FriendlyName -like "*Intel(R) HD Graphics 620*" }
     if ($internalGPU) {
         Write-Output "Internal GPU (Intel(R) UHD Graphics 620) detected."
         if ($internalGPU.Status -ne "OK") {
@@ -59,6 +59,7 @@ if (Get-PnpDevice | Where-Object { $_.FriendlyName -like "*NVIDIA GeForce RTX 40
             Write-Output "Internal GPU is already enabled."
         }
     } else {
-        Write-Output "Internal GPU (Intel(R) UHD Graphics 620) not detected."
+        Write-Output "Internal GPU (Intel(R) HD Graphics 620) not detected."
     }
 }
+
